@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{reportIncome.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{reportIncome.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/reportIncomes/add}" class="btn btn-primary ms-2">[[#{reportIncome.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${reportIncomes.empty}">[[#{reportIncome.list.empty}]]</div>
+            <div th:if="${!reportIncomes.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{reportIncome.id.label}]]</th>
+                            <th scope="col">[[#{reportIncome.totalIncome.label}]]</th>
+                            <th scope="col">[[#{reportIncome.admin.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="reportIncome : ${reportIncomes}">
+                            <td>[[${reportIncome.id}]]</td>
+                            <td>[[${reportIncome.totalIncome}]]</td>
+                            <td>[[${reportIncome.admin}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/reportIncomes/edit/{id}(id=${reportIncome.id})}" class="btn btn-sm btn-secondary">[[#{reportIncome.list.edit}]]</a>
+                                    <form th:action="@{/reportIncomes/delete/{id}(id=${reportIncome.id})}"
+                                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{reportIncome.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
