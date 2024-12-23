@@ -72,6 +72,7 @@ public class ReviewService {
         reviewDTO.setId(review.getId());
         reviewDTO.setKonten(review.getKonten());
         reviewDTO.setCustomer(review.getCustomer() == null ? null : review.getCustomer().getId());
+        reviewDTO.setCustomerName(review.getCustomer() == null ? null : review.getCustomer().getNama());
         reviewDTO.setOrder(review.getOrder() == null ? null : review.getOrder().getId());
         return reviewDTO;
     }

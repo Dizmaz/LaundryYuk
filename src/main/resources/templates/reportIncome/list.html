@@ -20,6 +20,7 @@
                             <th scope="col">[[#{reportIncome.id.label}]]</th>
                             <th scope="col">[[#{reportIncome.totalIncome.label}]]</th>
                             <th scope="col">[[#{reportIncome.admin.label}]]</th>
+                            <th scope="col">[[#{reportIncome.payments.label}]]</th>
                             <th><!-- --></th>
                         </tr>
                     </thead>
@@ -28,6 +29,7 @@
                             <td>[[${reportIncome.id}]]</td>
                             <td>[[${reportIncome.totalIncome}]]</td>
                             <td>[[${reportIncome.admin}]]</td>
+                            <td>[[${reportIncome.payments}]]</td>
                             <td>
                                 <div class="float-end text-nowrap">
                                     <a th:href="@{/reportIncomes/edit/{id}(id=${reportIncome.id})}" class="btn btn-sm btn-secondary">[[#{reportIncome.list.edit}]]</a>

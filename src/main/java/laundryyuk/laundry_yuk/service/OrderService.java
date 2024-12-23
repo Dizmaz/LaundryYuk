@@ -80,6 +80,7 @@ public class OrderService {
         orderDTO.setWeight(order.getWeight());
         orderDTO.setPrice(order.getPrice());
         orderDTO.setCustomer(order.getCustomer() == null ? null : order.getCustomer().getId());
+        orderDTO.setCustomerName(order.getCustomer() == null ? null : order.getCustomer().getNama());
         orderDTO.setPayment(order.getPayment() == null ? null : order.getPayment().getId());
         return orderDTO;
     }

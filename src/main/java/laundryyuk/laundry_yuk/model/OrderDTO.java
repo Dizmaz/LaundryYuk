@@ -11,6 +11,8 @@ public class OrderDTO {
 
     private Long id;
 
+    private String customerName;
+
     private OrderStatus orderStatus;
 
     private Double weight;

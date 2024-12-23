@@ -17,6 +17,8 @@ public class ReviewDTO {
 
     private Long customer;
 
+    private String customerName;
+
     @NotNull
     @ReviewOrderUnique
     private Long order;
