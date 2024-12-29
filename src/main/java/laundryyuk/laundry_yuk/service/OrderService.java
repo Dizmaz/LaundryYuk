@@ -39,6 +39,11 @@ public class OrderService {
         this.reviewRepository = reviewRepository;
     }
 
+    private double calculatePrice(double weight) {
+        double ratePerKg = 7000; // Example rate
+        return weight * ratePerKg;
+    }
+
     public List<OrderDTO> findAll() {
         final List<Order> orders = orderRepository.findAll(Sort.by("id"));
         return orders.stream()
@@ -55,6 +60,12 @@ public class OrderService {
     public Long create(final OrderDTO orderDTO) {
         final Order order = new Order();
         mapToEntity(orderDTO, order);
+
+        // Calculate price based on weight
+        if (order.getWeight() != null) {
+            order.setPrice(calculatePrice(order.getWeight()));
+        }
+
         return orderRepository.save(order).getId();
     }
 
@@ -62,6 +73,12 @@ public class OrderService {
         final Order order = orderRepository.findById(id)
                 .orElseThrow(NotFoundException::new);
         mapToEntity(orderDTO, order);
+
+        // Calculate price based on weight
+        if (order.getWeight() != null) {
+            order.setPrice(calculatePrice(order.getWeight()));
+        }
+        
         orderRepository.save(order);
     }
 
