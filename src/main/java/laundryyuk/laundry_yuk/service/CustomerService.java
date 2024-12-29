@@ -29,7 +29,7 @@ public class CustomerService {
     }
 
     public List<CustomerDTO> findAll() {
-        final List<Customer> customers = customerRepository.findAll(Sort.by("id"));
+        final List<Customer> customers = customerRepository.findAll(Sort.by("nama"));
         return customers.stream()
                 .map(customer -> mapToDTO(customer, new CustomerDTO()))
                 .toList();
