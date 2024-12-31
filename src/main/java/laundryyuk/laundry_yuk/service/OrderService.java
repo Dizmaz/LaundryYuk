@@ -109,7 +109,7 @@ public class OrderService {
         final Customer customer = orderDTO.getCustomer() == null ? null : customerRepository.findById(orderDTO.getCustomer())
                 .orElseThrow(() -> new NotFoundException("customer not found"));
         order.setCustomer(customer);
-        final Payment payment = orderDTO.getPayment() == null ? null : paymentRepository.findById(orderDTO.getPayment())
+        final Payment payment = (orderDTO.getPayment() == null) ? null : paymentRepository.findById(orderDTO.getPayment())
                 .orElseThrow(() -> new NotFoundException("payment not found"));
         order.setPayment(payment);
         return order;
