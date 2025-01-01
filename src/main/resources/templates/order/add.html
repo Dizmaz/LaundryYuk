@@ -16,9 +16,9 @@
             <form th:action="${requestUri}" method="post" novalidate="">
                 <div th:replace="~{fragments/forms::inputRow(object='order', field='orderStatus', type='radio')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='order', field='weight')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='order', field='price')}" />
+<!--                <div th:replace="~{fragments/forms::inputRow(object='order', field='price')}" />-->
                 <div th:replace="~{fragments/forms::inputRow(object='order', field='customer', required=true, type='select')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='order', field='payment', required=true, type='select')}" />
+<!--                <div th:replace="~{fragments/forms::inputRow(object='order', field='payment', type='select')}" />-->
                 <input type="submit" th:value="#{order.add.headline}" class="btn btn-primary mt-4" />
             </form>
         </div>

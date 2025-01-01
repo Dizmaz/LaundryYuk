@@ -22,7 +22,6 @@ public class OrderDTO {
     @NotNull
     private Long customer;
 
-    @NotNull
     @OrderPaymentUnique
     private Long payment;
 

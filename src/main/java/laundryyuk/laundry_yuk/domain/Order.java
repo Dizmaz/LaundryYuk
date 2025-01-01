@@ -49,7 +49,7 @@ public class Order {
     private Customer customer;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payment_id", nullable = false, unique = true)
+    @JoinColumn(name = "payment_id")
     private Payment payment;
 
     @CreatedDate
