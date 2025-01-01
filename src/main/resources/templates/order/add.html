@@ -14,7 +14,7 @@
             </div>
             <div th:replace="~{fragments/forms::globalErrors('order')}" />
             <form th:action="${requestUri}" method="post" novalidate="">
-                <div th:replace="~{fragments/forms::inputRow(object='order', field='orderStatus', type='radio')}" />
+<!--                <div th:replace="~{fragments/forms::inputRow(object='order', field='orderStatus', type='radio', reuired=true)}" />-->
                 <div th:replace="~{fragments/forms::inputRow(object='order', field='weight')}" />
 <!--                <div th:replace="~{fragments/forms::inputRow(object='order', field='price')}" />-->
                 <div th:replace="~{fragments/forms::inputRow(object='order', field='customer', required=true, type='select')}" />
