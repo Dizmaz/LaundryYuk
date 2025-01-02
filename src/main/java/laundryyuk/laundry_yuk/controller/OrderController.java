@@ -5,6 +5,7 @@ import laundryyuk.laundry_yuk.domain.Customer;
 import laundryyuk.laundry_yuk.domain.Payment;
 import laundryyuk.laundry_yuk.model.OrderDTO;
 import laundryyuk.laundry_yuk.model.OrderStatus;
+import laundryyuk.laundry_yuk.model.PaymentStatus;
 import laundryyuk.laundry_yuk.repos.CustomerRepository;
 import laundryyuk.laundry_yuk.repos.PaymentRepository;
 import laundryyuk.laundry_yuk.service.OrderService;
@@ -42,6 +43,7 @@ public class OrderController {
     @ModelAttribute
     public void prepareContext(final Model model) {
         model.addAttribute("orderStatusValues", OrderStatus.values());
+        model.addAttribute("paymentStatusValues", PaymentStatus.values());
         model.addAttribute("customerValues", customerRepository.findAll(Sort.by("id"))
                 .stream()
                 .collect(CustomCollectors.toSortedMap(Customer::getId, Customer::getNama)));
