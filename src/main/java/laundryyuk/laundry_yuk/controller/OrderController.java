@@ -44,7 +44,7 @@ public class OrderController {
         model.addAttribute("orderStatusValues", OrderStatus.values());
         model.addAttribute("customerValues", customerRepository.findAll(Sort.by("id"))
                 .stream()
-                .collect(CustomCollectors.toSortedMap(Customer::getId, Customer::getId)));
+                .collect(CustomCollectors.toSortedMap(Customer::getId, Customer::getNama)));
         model.addAttribute("paymentValues", paymentRepository.findAll(Sort.by("id"))
                 .stream()
                 .collect(CustomCollectors.toSortedMap(Payment::getId, Payment::getId)));
@@ -58,12 +58,15 @@ public class OrderController {
 
     @GetMapping("/add")
     public String add(@ModelAttribute("order") final OrderDTO orderDTO) {
+        orderDTO.setOrderStatus(OrderStatus.MENUNGGU);
         return "order/add";
     }
 
     @PostMapping("/add")
     public String add(@ModelAttribute("order") @Valid final OrderDTO orderDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+        orderDTO.setOrderStatus(OrderStatus.MENUNGGU);
+
         if (bindingResult.hasErrors()) {
             return "order/add";
         }
