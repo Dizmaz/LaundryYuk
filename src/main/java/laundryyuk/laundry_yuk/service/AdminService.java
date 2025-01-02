@@ -1,16 +1,16 @@
 package laundryyuk.laundry_yuk.service;
 
 import java.util.List;
-import laundryyuk.laundry_yuk.domain.Admin;
-import laundryyuk.laundry_yuk.domain.ReportIncome;
-import laundryyuk.laundry_yuk.domain.ReportOrder;
-import laundryyuk.laundry_yuk.domain.ReportReview;
+
+import laundryyuk.laundry_yuk.domain.*;
 import laundryyuk.laundry_yuk.model.AdminDTO;
+import laundryyuk.laundry_yuk.model.CustomerDTO;
 import laundryyuk.laundry_yuk.repos.AdminRepository;
 import laundryyuk.laundry_yuk.repos.ReportIncomeRepository;
 import laundryyuk.laundry_yuk.repos.ReportOrderRepository;
 import laundryyuk.laundry_yuk.repos.ReportReviewRepository;
 import laundryyuk.laundry_yuk.util.NotFoundException;
+import laundryyuk.laundry_yuk.util.PasswordUtil;
 import laundryyuk.laundry_yuk.util.ReferencedWarning;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -102,6 +102,27 @@ public class AdminService {
             return referencedWarning;
         }
         return null;
+    }
+
+
+    //========================================================================================
+    public boolean emailExists(String email) {
+        return adminRepository.findByEmail(email).isPresent();
+    }
+
+    public boolean authenticate(String email, String rawPassword) {
+        String hashedPassword = PasswordUtil.hashPassword(rawPassword);
+        return adminRepository.findByEmail(email)
+                .map(admin -> {
+                    System.out.println("Admin ditemukan: " + admin.getEmail());
+//                    System.out.println("Password di database: " + admin.getPassword());
+//                    System.out.println("Password yang di-hash: " + hashedPassword);
+                    return admin.getPassword().equals(hashedPassword);
+                })
+                .orElseGet(() -> {
+                    System.out.println("Admin dengan email " + email + " tidak ditemukan.");
+                    return false;
+                });
     }
 
 }

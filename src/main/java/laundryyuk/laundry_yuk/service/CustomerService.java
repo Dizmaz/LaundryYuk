@@ -9,6 +9,7 @@ import laundryyuk.laundry_yuk.repos.CustomerRepository;
 import laundryyuk.laundry_yuk.repos.OrderRepository;
 import laundryyuk.laundry_yuk.repos.ReviewRepository;
 import laundryyuk.laundry_yuk.util.NotFoundException;
+import laundryyuk.laundry_yuk.util.PasswordUtil;
 import laundryyuk.laundry_yuk.util.ReferencedWarning;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -90,6 +91,27 @@ public class CustomerService {
             return referencedWarning;
         }
         return null;
+    }
+
+    //========================================================================================
+    public boolean emailExists(String email) {
+        return customerRepository.findByEmail(email).isPresent();
+    }
+
+    public void register(CustomerDTO customerDTO) {
+        Customer customer = new Customer();
+        customer.setEmail(customerDTO.getEmail());
+        customer.setNama(customerDTO.getNama());
+        customer.setRole(customerDTO.getRole());
+        customer.setPassword(PasswordUtil.hashPassword(customerDTO.getPassword())); // Panggil PasswordUtils
+        customerRepository.save(customer);
+    }
+
+    public boolean authenticate(String email, String rawPassword) {
+        String hashedPassword = PasswordUtil.hashPassword(rawPassword);
+        return customerRepository.findByEmail(email)
+                .map(customer -> customer.getPassword().equals(hashedPassword))
+                .orElse(false);
     }
 
 }
