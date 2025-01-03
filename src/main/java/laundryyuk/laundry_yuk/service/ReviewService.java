@@ -25,8 +25,8 @@ public class ReviewService {
     private final ReportReviewRepository reportReviewRepository;
 
     public ReviewService(final ReviewRepository reviewRepository,
-            final CustomerRepository customerRepository, final OrderRepository orderRepository,
-            final ReportReviewRepository reportReviewRepository) {
+                         final CustomerRepository customerRepository, final OrderRepository orderRepository,
+                         final ReportReviewRepository reportReviewRepository) {
         this.reviewRepository = reviewRepository;
         this.customerRepository = customerRepository;
         this.orderRepository = orderRepository;
@@ -71,25 +71,12 @@ public class ReviewService {
     private ReviewDTO mapToDTO(final Review review, final ReviewDTO reviewDTO) {
         reviewDTO.setId(review.getId());
         reviewDTO.setKonten(review.getKonten());
-        reviewDTO.setCustomer(review.getCustomer() == null ? null : review.getCustomer().getId());
-        reviewDTO.setCustomerName(review.getCustomer() == null ? null : review.getCustomer().getNama());
-        reviewDTO.setOrder(review.getOrder() == null ? null : review.getOrder().getId());
         return reviewDTO;
     }
 
     private Review mapToEntity(final ReviewDTO reviewDTO, final Review review) {
         review.setKonten(reviewDTO.getKonten());
-        final Customer customer = reviewDTO.getCustomer() == null ? null : customerRepository.findById(reviewDTO.getCustomer())
-                .orElseThrow(() -> new NotFoundException("customer not found"));
-        review.setCustomer(customer);
-        final Order order = reviewDTO.getOrder() == null ? null : orderRepository.findById(reviewDTO.getOrder())
-                .orElseThrow(() -> new NotFoundException("order not found"));
-        review.setOrder(order);
         return review;
-    }
-
-    public boolean orderExists(final Long id) {
-        return reviewRepository.existsByOrderId(id);
     }
 
 }
