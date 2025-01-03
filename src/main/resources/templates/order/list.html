@@ -22,7 +22,7 @@
                             <th scope="col">[[#{order.weight.label}]]</th>
                             <th scope="col">[[#{order.price.label}]]</th>
                             <th scope="col">[[#{order.customer.label}]]</th>
-                            <th scope="col">[[#{order.payment.label}]]</th>
+                            <th scope="col">[[#{order.paymentStatus.label}]]</th>
                             <th><!-- --></th>
                         </tr>
                     </thead>
@@ -33,7 +33,7 @@
                             <td>[[${order.weight}]]</td>
                             <td>[[${order.price}]]</td>
                             <td>[[${order.customerName}]]</td>
-                            <td>[[${order.payment}]]</td>
+                            <td>[[${order.paymentStatus}]]</td>
                             <td>
                                 <div class="float-end text-nowrap">
                                     <a th:href="@{/orders/edit/{id}(id=${order.id})}" class="btn btn-sm btn-secondary">[[#{order.list.edit}]]</a>

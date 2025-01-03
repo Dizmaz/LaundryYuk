@@ -15,6 +15,8 @@ public class OrderDTO {
 
     private OrderStatus orderStatus;
 
+    private PaymentStatus paymentStatus;
+
     private Double weight;
 
     private Double price;

@@ -7,6 +7,7 @@ import laundryyuk.laundry_yuk.domain.Order;
 import laundryyuk.laundry_yuk.domain.Payment;
 import laundryyuk.laundry_yuk.domain.Review;
 import laundryyuk.laundry_yuk.model.OrderDTO;
+import laundryyuk.laundry_yuk.model.PaymentStatus;
 import laundryyuk.laundry_yuk.repos.CustomerRepository;
 import laundryyuk.laundry_yuk.repos.OrderRepository;
 import laundryyuk.laundry_yuk.repos.PaymentRepository;
@@ -66,6 +67,14 @@ public class OrderService {
             order.setPrice(calculatePrice(order.getWeight()));
         }
 
+        // Create and link payment
+        Payment payment = new Payment();
+        payment.setNomimal(order.getPrice());
+        payment.setStatusPayment(PaymentStatus.BELUM);
+        payment = paymentRepository.save(payment);
+
+        order.setPayment(payment);
+
         return orderRepository.save(order).getId();
     }
 
@@ -99,6 +108,7 @@ public class OrderService {
         orderDTO.setCustomer(order.getCustomer() == null ? null : order.getCustomer().getId());
         orderDTO.setCustomerName(order.getCustomer() == null ? null : order.getCustomer().getNama());
         orderDTO.setPayment(order.getPayment() == null ? null : order.getPayment().getId());
+        orderDTO.setPaymentStatus(order.getPayment() != null ? order.getPayment().getStatusPayment() : null);
         return orderDTO;
     }
 
@@ -112,6 +122,10 @@ public class OrderService {
         final Payment payment = (orderDTO.getPayment() == null) ? null : paymentRepository.findById(orderDTO.getPayment())
                 .orElseThrow(() -> new NotFoundException("payment not found"));
         order.setPayment(payment);
+
+        if (order.getPayment() != null) {
+            order.getPayment().setStatusPayment(orderDTO.getPaymentStatus());
+        }
         return order;
     }
 
