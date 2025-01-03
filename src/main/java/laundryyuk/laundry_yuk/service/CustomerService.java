@@ -23,7 +23,7 @@ public class CustomerService {
     private final ReviewRepository reviewRepository;
 
     public CustomerService(final CustomerRepository customerRepository,
-            final OrderRepository orderRepository, final ReviewRepository reviewRepository) {
+                           final OrderRepository orderRepository, final ReviewRepository reviewRepository) {
         this.customerRepository = customerRepository;
         this.orderRepository = orderRepository;
         this.reviewRepository = reviewRepository;
@@ -84,12 +84,7 @@ public class CustomerService {
             referencedWarning.addParam(customerOrder.getId());
             return referencedWarning;
         }
-        final Review customerReview = reviewRepository.findFirstByCustomer(customer);
-        if (customerReview != null) {
-            referencedWarning.setKey("customer.review.customer.referenced");
-            referencedWarning.addParam(customerReview.getId());
-            return referencedWarning;
-        }
+
         return null;
     }
 

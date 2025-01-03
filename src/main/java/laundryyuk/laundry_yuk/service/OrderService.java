@@ -29,9 +29,9 @@ public class OrderService {
     private final ReviewRepository reviewRepository;
 
     public OrderService(final OrderRepository orderRepository,
-            final CustomerRepository customerRepository, final PaymentRepository paymentRepository,
-            final ReportOrderRepository reportOrderRepository,
-            final ReviewRepository reviewRepository) {
+                        final CustomerRepository customerRepository, final PaymentRepository paymentRepository,
+                        final ReportOrderRepository reportOrderRepository,
+                        final ReviewRepository reviewRepository) {
         this.orderRepository = orderRepository;
         this.customerRepository = customerRepository;
         this.paymentRepository = paymentRepository;
@@ -78,7 +78,7 @@ public class OrderService {
         if (order.getWeight() != null) {
             order.setPrice(calculatePrice(order.getWeight()));
         }
-        
+
         orderRepository.save(order);
     }
 
@@ -123,12 +123,7 @@ public class OrderService {
         final ReferencedWarning referencedWarning = new ReferencedWarning();
         final Order order = orderRepository.findById(id)
                 .orElseThrow(NotFoundException::new);
-        final Review orderReview = reviewRepository.findFirstByOrder(order);
-        if (orderReview != null) {
-            referencedWarning.setKey("order.review.order.referenced");
-            referencedWarning.addParam(orderReview.getId());
-            return referencedWarning;
-        }
+
         return null;
     }
 

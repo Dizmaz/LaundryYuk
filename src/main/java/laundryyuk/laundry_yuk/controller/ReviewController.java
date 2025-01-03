@@ -30,7 +30,7 @@ public class ReviewController {
     private final OrderRepository orderRepository;
 
     public ReviewController(final ReviewService reviewService,
-            final CustomerRepository customerRepository, final OrderRepository orderRepository) {
+                            final CustomerRepository customerRepository, final OrderRepository orderRepository) {
         this.reviewService = reviewService;
         this.customerRepository = customerRepository;
         this.orderRepository = orderRepository;
@@ -59,11 +59,11 @@ public class ReviewController {
 
     @PostMapping("/add")
     public String add(@ModelAttribute("review") @Valid final ReviewDTO reviewDTO,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+                      final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "review/add";
         }
-        reviewService.create(reviewDTO);
+        reviewService.create(reviewDTO); // Tidak perlu mengatur customer dan order
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("review.create.success"));
         return "redirect:/reviews";
     }
@@ -76,19 +76,19 @@ public class ReviewController {
 
     @PostMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") final Long id,
-            @ModelAttribute("review") @Valid final ReviewDTO reviewDTO,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+                       @ModelAttribute("review") @Valid final ReviewDTO reviewDTO,
+                       final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "review/edit";
         }
-        reviewService.update(id, reviewDTO);
+        reviewService.update(id, reviewDTO); // Tidak perlu mengatur customer dan order
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("review.update.success"));
         return "redirect:/reviews";
     }
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable(name = "id") final Long id,
-            final RedirectAttributes redirectAttributes) {
+                         final RedirectAttributes redirectAttributes) {
         reviewService.delete(id);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("review.delete.success"));
         return "redirect:/reviews";
