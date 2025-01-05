@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[[#{reportIncome.list.headline}]]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div layout:fragment="content" class="container mt-5">
+    <!-- Heading and Create New Button -->
+    <div class="d-flex flex-wrap mb-4">
+        <h1 class="flex-grow-1">[[#{reportIncome.list.headline}]]</h1>
+        <div>
+            <a th:href="@{/reportIncomes/add}" class="btn btn-info text-white ms-2">[[#{reportIncome.list.createNew}]]</a>
+        </div>
+    </div>
+
+    <!-- No Report Incomes Message -->
+    <div th:if="${reportIncomes.empty}" class="alert alert-warning" role="alert">
+        [[#{reportIncome.list.empty}]]
+    </div>
+
+    <!-- Table for Report Incomes -->
+    <div th:if="${!reportIncomes.empty}" class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead>
+            <tr>
+                <th scope="col">[[#{reportIncome.id.label}]]</th>
+                <th scope="col">[[#{reportIncome.totalIncome.label}]]</th>
+                <th scope="col">[[#{reportIncome.admin.label}]]</th>
+                <th scope="col">[[#{reportIncome.payments.label}]]</th>
+                <th><!-- --></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reportIncome : ${reportIncomes}">
+                <td>[[${reportIncome.id}]]</td>
+                <td>[[${reportIncome.totalIncome}]]</td>
+                <td>[[${reportIncome.admin}]]</td>
+                <td>[[${reportIncome.payments}]]</td>
+                <td>
+                    <div class="float-end text-nowrap">
+                        <a th:href="@{/reportIncomes/edit/{id}(id=${reportIncome.id})}"
+                           class="btn btn-sm btn-info text-white">[[#{reportIncome.list.edit}]]</a>
+                        <form th:action="@{/reportIncomes/delete/{id}(id=${reportIncome.id})}"
+                              th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-danger">[[#{reportIncome.list.delete}]]</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
