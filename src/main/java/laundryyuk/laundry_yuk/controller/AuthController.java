@@ -50,6 +50,7 @@ public class AuthController {
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, "Registrasi berhasil. Silakan login.");
         return "redirect:/login";
     }
+
     @GetMapping("/login")
     public String showLoginForm() {
         return "auth/login";
@@ -61,21 +62,17 @@ public class AuthController {
         String email = customerDTO.getEmail();
         String password = customerDTO.getPassword();
 
-//        System.out.println("Attempting login for email: " + email);
-
         if (adminService.authenticate(email, password)) {
-//            System.out.println("Admin login successful for email: " + email);
             return "redirect:/";
         }
 
         if (customerService.authenticate(email, password)) {
-//            System.out.println("Customer login successful for email: " + email);
             return "redirect:/";
         }
 
-        System.out.println("Login failed for email: " + email);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_ERROR, "Email atau password salah.");
         return "redirect:/login";
     }
 
+    
 }

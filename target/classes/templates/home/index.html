@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{home.index.headline}]]</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <h1 class="mb-4">Welkam Tu LaundryYuk</h1>
+            <p>[(#{home.index.text})]</p>
+            <p class="mb-5">
+                <span>[[#{home.index.swagger}]]</span>
+                <a th:href="@{/swagger-ui.html}" target="_blank">[[#{home.index.swagger.link}]]</a>.
+            </p>
+            <div class="col-md-4 mb-5">
+                <h4 class="mb-3">[[#{home.index.exploreEntities}]]</h4>
+                <div class="list-group">
+                    <a th:href="@{/customers}" class="list-group-item list-group-item-action">[[#{customer.list.headline}]]</a>
+                    <a th:href="@{/admins}" class="list-group-item list-group-item-action">[[#{admin.list.headline}]]</a>
+                    <a th:href="@{/orders}" class="list-group-item list-group-item-action">[[#{order.list.headline}]]</a>
+                    <a th:href="@{/payments}" class="list-group-item list-group-item-action">[[#{payment.list.headline}]]</a>
+                    <a th:href="@{/reviews}" class="list-group-item list-group-item-action">[[#{review.list.headline}]]</a>
+                    <a th:href="@{/reportIncomes}" class="list-group-item list-group-item-action">[[#{reportIncome.list.headline}]]</a>
+                    <a th:href="@{/reportOrders}" class="list-group-item list-group-item-action">[[#{reportOrder.list.headline}]]</a>
+                    <a th:href="@{/reportReviews}" class="list-group-item list-group-item-action">[[#{reportReview.list.headline}]]</a>
+                    <a th:href="@{/login}" class="list-group-item list-group-item-action">Login</a>
+                    <a th:href="@{/register}" class="list-group-item list-group-item-action">Register</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,26 +1,32 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
-    <head>
-        <title>[[#{order.add.headline}]]</title>
-    </head>
-    <body>
-        <div layout:fragment="content">
-            <div class="d-flex flex-wrap mb-4">
-                <h1 class="flex-grow-1">[[#{order.add.headline}]]</h1>
-                <div>
-                    <a th:href="@{/orders}" class="btn btn-secondary">[[#{order.add.back}]]</a>
-                </div>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+<head>
+    <title>[[#{order.add.headline}]]</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <!-- Header Section -->
+        <div class="d-flex flex-wrap mb-4">
+            <h1 class="flex-grow-1">[[#{order.add.headline}]]</h1>
+            <div>
+                <a th:href="@{/orders}" class="btn btn-secondary">[[#{order.add.back}]]</a>
             </div>
-            <div th:replace="~{fragments/forms::globalErrors('order')}" />
-            <form th:action="${requestUri}" method="post" novalidate="">
-<!--                <div th:replace="~{fragments/forms::inputRow(object='order', field='orderStatus', type='radio', reuired=true)}" />-->
-                <div th:replace="~{fragments/forms::inputRow(object='order', field='weight')}" />
-<!--                <div th:replace="~{fragments/forms::inputRow(object='order', field='price')}" />-->
-                <div th:replace="~{fragments/forms::inputRow(object='order', field='customer', required=true, type='select')}" />
-<!--                <div th:replace="~{fragments/forms::inputRow(object='order', field='payment', type='select')}" />-->
-                <input type="submit" th:value="#{order.add.headline}" class="btn btn-primary mt-4" />
-            </form>
         </div>
-    </body>
+
+        <!-- Global Errors -->
+        <div th:replace="~{fragments/forms::globalErrors('order')}" />
+
+        <!-- Form Section -->
+        <form th:action="${requestUri}" method="post" novalidate="">
+            <!-- Weight Input -->
+            <div th:replace="~{fragments/forms::inputRow(object='order', field='weight')}" />
+            
+            <!-- Customer Select -->
+            <div th:replace="~{fragments/forms::inputRow(object='order', field='customer', required=true, type='select')}" />
+            
+            <!-- Submit Button -->
+            <input type="submit" th:value="#{order.add.headline}" class="btn btn-primary mt-4" />
+        </form>
+    </div>
+</body>
 </html>

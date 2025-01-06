@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>SuperClean Cleaning Services</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/vendor.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+ 
+  <header id="header">
+    <nav id="primary-header" class="navbar navbar-expand-lg py-3">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="images/logo.png" class="logo img-fluid">
+        </a>
+        <button class="navbar-toggler border-0 d-flex d-lg-none order-3 p-2 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false">
+          <svg class="navbar-icon" width="60" height="60">
+            <use xlink:href="#navbar-icon"></use>
+          </svg>
+        </button>
+        <div class="header-bottom offcanvas offcanvas-end" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+          <div class="offcanvas-header px-4 pb-0">
+            <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
+          </div>
+          <div class="offcanvas-body align-items-center justify-content-end">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item px-3">
+                <a class="nav-link active p-0" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item px-3">
+                <a class="nav-link p-0" th:href="@{/orders}">Order</a>
+              </li>
+              <li class="nav-item px-3">
+                <a class="nav-link p-0" th:href="@{/reviews}">Review</a>
+              </li>
+              <li class="nav-item px-3 dropdown">
+                <a class="nav-link p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Akun</a>
+                <ul class="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 shadow">
+                  <li class="py-1"><a th:href="@{/register}" class="dropdown-item text-uppercase">Registrasi</a></li>
+                  <li class="py-1"><a th:href="@{/login}" class="dropdown-item text-uppercase">Login</a></li>
+                  <li class="py-1"><a th:href="@{/payments}" class="dropdown-item text-uppercase">Payments</a></li>
+                  <li class="py-1"><a th:href="@{/reportIncomes}" class="dropdown-item text-uppercase">Report Incomes</a></li>
+                  <li class="py-1"><a th:href="@{/reportOrders}" class="dropdown-item text-uppercase">Report Orders</a></li>
+                  <li class="py-1"><a th:href="@{/reportReviews}" class="dropdown-item text-uppercase">Report Reviews</a></li>
+                </ul>
+              </li>
+             
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section id="slider">
+    <div class="swiper slider position-relative">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide d-flex" style="background-image: url(images/slider1.jpg); background-size: cover; background-repeat: no-repeat; height: 80vh; background-position: center; height: 80vh;">
+          <div class="banner-content px-5 py-4 text-center m-auto py-5 rounded-4">
+            <h2 class="mb-0" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); color: white;">Best Laundry Services</h2>
+            <p class="fs-4 text-capitalize" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); color: white;">Welcome to LaundryYuk, solusi pakaian kotor anda!</p>
+            <a href="services.html" class="btn btn-primary mt-3">Buat Order</a>
+          </div>
+        </div>
+        <div class="swiper-slide d-flex" style="background-image: url(images/slider2.jpg); background-size: cover; background-repeat: no-repeat; height: 80vh; background-position: center; height: 80vh;">
+          <div class="banner-content px-5 py-4 text-center m-auto py-5 rounded-4" style="background-color: transparent;">
+            <h2 class="mb-0" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); color: white;">Kesan Customer LaundryYuk</h2>
+            <p class="fs-4 text-capitalize" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); color: white;">Review dari customer LaundryYuk.</p>
+            <a href="services.html" class="btn btn-primary mt-3">Reviews</a>
+          </div>
+        </div>
+      </div>
+      <div class="position-absolute top-0 bottom-0 end-0 m-auto me-0 me-md-5 main-slider-button-next">
+        <svg class="chevron-forward-circle light-color" width="60" height="60">
+          <use xlink:href="#chevron-forward-circle"></use>
+        </svg>
+      </div>
+      <div class="position-absolute top-0 bottom-0 start-0 m-auto ms-0 ms-md-5 main-slider-button-prev">
+        <svg class="chevron-back-circle light-color" width="60" height="60">
+          <use xlink:href="#chevron-back-circle"></use>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonial" class="padding-medium">
+    <div class="container">
+      <div class="align-items-center">
+        <div class="review-content">
+          <div class="swiper testimonial-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="review-item">
+                  <div class="review bg-gray border rounded-3 p-4">
+                    <blockquote class="mb-0">
+                    <p class="mb-0">“A pellen tesque pretium feugiat vel mobi sagittis lorem habi tasse cursus ipsum quis nec eget facilisis. Quis nibh ut bindum nisl quis placerat proin tortor mattis.”</p>
+                    </blockquote>
+                  </div>
+                  <div class="author-detail mt-4 d-flex align-items-center">
+                    <img class="img-fluid me-3" src="images/reviewer1.jpg" alt="reviewer">
+                    <div class="author-text">
+                      <h6 class="name mb-0">James Rodrigo</h6>
+                      <span class="time text-capitalize">2 months ago</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="review-item">
+                  <div class="review bg-gray border rounded-3 p-4">
+                    <blockquote class="mb-0">
+                    <p class="mb-0">“A pellen tesque pretium feugiat vel mobi sagittis lorem habi tasse cursus ipsum quis nec eget facilisis. Quis nibh ut bindum nisl quis placerat proin tortor mattis.”</p>
+                    </blockquote>
+                  </div>
+                  <div class="author-detail mt-4 d-flex align-items-center">
+                    <img class="img-fluid me-3" src="images/reviewer3.jpg" alt="reviewer">
+                    <div class="author-text">
+                      <h6 class="name mb-0">Kelly Garcia</h6>
+                      <span class="time text-capitalize">2 months ago</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="review-item">
+                  <div class="review bg-gray border rounded-3 p-4">
+                    <blockquote class="mb-0">
+                    <p class="mb-0">“A pellen tesque pretium feugiat vel mobi sagittis lorem habi tasse cursus ipsum quis nec eget facilisis. Quis nibh ut bindum nisl quis placerat proin tortor mattis.”</p>
+                    </blockquote>
+                  </div>
+                  <div class="author-detail mt-4 d-flex align-items-center">
+                    <img class="img-fluid me-3" src="images/reviewer1.jpg" alt="reviewer">
+                    <div class="author-text">
+                      <h6 class="name mb-0">James Rodrigo</h6>
+                      <span class="time text-capitalize">2 months ago</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination position-relative pt-5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="about-us" class="position-relative bg-gray padding-small">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="imageblock me-4">
+            <img class="img-fluid" src="images/about.jpg" alt="img">
+          </div>
+        </div>
+        <div class="col-md-6 mt-5">
+          <div class="section-title mb-4">
+            <p class="mb-2 fs-4 text-capitalize">Short Introduction</p>
+            <h3>Welcome To LaundryYuk</h3>
+          </div>
+          <p>Selamat datang di LaundryYuk, mitra terpercaya Anda untuk layanan laundry profesional. Dengan komitmen terhadap kualitas dan kepuasan pelanggan, kami menyederhanakan kebutuhan laundry Anda, menawarkan solusi yang nyaman dan efisien untuk individu maupun bisnis.
+            <br>
+          <br>
+          Di LaundryYuk, kami bangga memberikan hasil yang bersih sempurna melalui proses yang mudah. Mulai dari laundry harian hingga perawatan khusus untuk pakaian tertentu, tim kami yang terampil memastikan setiap item mendapatkan perhatian terbaik. Dengan fitur seperti pelacakan real-time, opsi pembayaran fleksibel, dan praktik ramah lingkungan, kami membuat urusan laundry jadi lebih mudah!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="our-services" class="padding-medium" style="background-image: url(images/services-bg.png); background-repeat: no-repeat; background-position: center;">
+    <div class="swiper services-swiper py-3">
+      <div class="swiper-wrapper ms-0 ps-0 ms-sm-5 ps-sm-5">
+        <div class="swiper-slide mt-5 service text-center">
+          <img class="rounded-circle mb-4 img-fluid" src="images/order.png" alt="img">
+          <h6 class="mb-0"><a href="service-single.html">Buat Pesanan</a></h6>
+          <p>Customer membuat pesanan laundry.</p>
+        </div>
+        <div class="swiper-slide service text-center">
+          <img class="rounded-circle mb-4 img-fluid" src="images/proses.png" alt="img">
+          <h6 class="mb-0"><a href="service-single.html">Proses Laundry</a></h6>
+          <p>Pesanan laundry diproses oleh LaundryYuk.</p>
+        </div>
+        <div class="swiper-slide mt-5 pt-5 service text-center">
+          <img class="rounded-circle mb-4 img-fluid" src="images/bayar.png" alt="img">
+          <h6 class="mb-0"><a href="service-single.html">Pembayaran</a></h6>
+          <p>Customer melakukan pembayaran untuk pesanannya.</p>
+        </div>
+        <div class="swiper-slide mt-5 pt-1 service text-center">
+          <img class="rounded-circle mb-4 img-fluid" src="images/selesai.png" alt="img">
+          <h6 class="mb-0"><a href="service-single.html">Laundry Selesai</a></h6>
+          <p>Pesanan laundry selesai dan customer melakukan review terhadap pesanannya.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faqs" class="bg-gray padding-small margin-medium mb-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2 accordion" id="accordion">
+          <div class="accordion-item border-0 rounded-3 mb-3">
+            <h5 class="text-capitalize fw-regular accordion-header">
+              <button
+              class="accordion-button bg-transparent focus-transparent text-capitalize shadow-none"
+                type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
+                aria-controls="collapseOne">
+                Berapa lama pengerjaanya ?
+              </button>
+            </h5>
+            <div id="collapseOne" class="accordion-collapse border-0 collapse show" data-bs-parent="#accordion">
+              <div class="accordion-body pt-0">
+                <p>Normalnya 2 hari untuk laundry tapi kalau situasi sedang tidak ramai pesanan, kemungkinan bisa lebih cepat.</p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 rounded-3 mb-3">
+            <h5 class="text-capitalize fw-regular accordion-header">
+              <button
+                class="accordion-button bg-transparent collapsed focus-transparent text-capitalize shadow-none"
+                type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                aria-controls="collapseTwo">
+                Apakah aman laundry baju berwarna putih ?
+              </button>
+            </h5>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordion">
+              <div class="accordion-body pt-0">
+                <p>Aman. Karena untuk proses laundry yang kami lakukan memisahkan terlebih dahulu pakaian yang berwarna putih, jadi tidak usah khawatir kena lunturan dari pakaian lain.</p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-0 rounded-3 mb-3">
+            <h5 class="text-capitalize fw-regular accordion-header">
+              <button
+                class="accordion-button bg-transparent collapsed focus-transparent text-capitalize shadow-none"
+                type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
+                aria-controls="collapseThree">
+                Apabila terjadi kerusakan pada pakaian bagaimana ?
+              </button>
+            </h5>
+            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordion">
+              <div class="accordion-body pt-0">
+                <p>Apabila ada kejadian seperti itu kami jamin akan bertanggung jawab dan kami pastikan hal itu tidak terjadi.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="bg-white">
+      <div class="container footer-bottom d-md-flex text-center justify-content-between py-4">
+        <p class="mb-0">© 2024 LaundryYuk - All rights reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="js/plugins.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</body>
+
+</html>

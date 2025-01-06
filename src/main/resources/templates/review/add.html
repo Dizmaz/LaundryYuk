@@ -1,22 +1,73 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>[[#{review.add.headline}]]</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        body {
+            background-color: #f8f9fa;
+        }
+        .header-title {
+            color: #0dcaf0; /* Blue color similar to .text-info */
+        }
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .btn-custom {
+            background-color: #0dcaf0;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #0ba7c4;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        .form-control:focus {
+            border-color: #0dcaf0;
+            box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25);
+        }
+    </style>
 </head>
 <body>
-<div layout:fragment="content">
+<div layout:fragment="content" class="container mt-5">
     <div class="d-flex flex-wrap mb-4">
-        <h1 class="flex-grow-1">[[#{review.add.headline}]]</h1>
+        <h1 class="flex-grow-1 header-title">[[#{review.add.headline}]]</h1>
         <div>
             <a th:href="@{/reviews}" class="btn btn-secondary">[[#{review.add.back}]]</a>
         </div>
     </div>
-    <div th:replace="~{fragments/forms::globalErrors('review')}" />
-    <form th:action="${requestUri}" method="post" novalidate="">
-        <div th:replace="~{fragments/forms::inputRow(object='review', field='konten')}" />
 
-        <input type="submit" th:value="#{review.add.headline}" class="btn btn-primary mt-4" />
-    </form>
+    <!-- Global Errors Section -->
+    <div th:replace="~{fragments/forms::globalErrors('review')}" />
+
+    <!-- Form Container -->
+    <div class="form-container">
+        <form th:action="${requestUri}" method="post" novalidate="">
+            <!-- Konten Field -->
+            <div th:replace="~{fragments/forms::inputRow(object='review', field='konten')}" />
+
+            <!-- Submit Button -->
+            <div class="text-end">
+                <input type="submit" th:value="#{review.add.headline}" class="btn btn-custom mt-4" />
+            </div>
+        </form>
+    </div>
 </div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

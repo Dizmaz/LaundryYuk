@@ -1,39 +1,76 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>[[#{review.list.headline}]]</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        body {
+            background-color: #f8f9fa;
+        }
+        .header-title {
+            color: #0dcaf0; /* Blue color similar to .text-info */
+        }
+        .btn-custom {
+            background-color: #0dcaf0;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #0ba7c4;
+        }
+        .table thead {
+            background-color: #0dcaf0; /* Light Blue for the header */
+            color: white;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f1f5f8;
+        }
+        .float-end {
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
 </head>
 <body>
-<div layout:fragment="content">
+<div layout:fragment="content" class="container mt-5">
+    <!-- Header Section -->
     <div class="d-flex flex-wrap mb-4">
-        <h1 class="flex-grow-1">[[#{review.list.headline}]]</h1>
+        <h1 class="flex-grow-1 header-title">[[#{review.list.headline}]]</h1>
         <div>
-            <a th:href="@{/reviews/add}" class="btn btn-primary ms-2">[[#{review.list.createNew}]]</a>
+            <a th:href="@{/reviews/add}" class="btn btn-custom ms-2">[[#{review.list.createNew}]]</a>
         </div>
     </div>
-    <div th:if="${reviews.empty}">
+
+    <!-- Empty Reviews Section -->
+    <div th:if="${reviews.empty}" class="alert alert-info">
         [[#{review.list.empty}]]
     </div>
+
+    <!-- Reviews Table Section -->
     <div th:if="${!reviews.empty}" class="table-responsive">
-        <table class="table table-striped table-hover align-middle">
+        <table class="table table-striped table-hover">
             <thead>
             <tr>
                 <th scope="col">[[#{review.id.label}]]</th>
                 <th scope="col">[[#{review.konten.label}]]</th>
-
-                <th><!-- --></th>
+                <th class="text-center">Action</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="review : ${reviews}">
                 <td>[[${review.id}]]</td>
                 <td>[[${review.konten}]]</td>
-
-                <td>
-                    <div class="float-end text-nowrap">
+                <td class="text-center">
+                    <div class="btn-group" role="group">
                         <a th:href="@{/reviews/edit/{id}(id=${review.id})}" class="btn btn-sm btn-secondary">[[#{review.list.edit}]]</a>
                         <form th:action="@{/reviews/delete/{id}(id=${review.id})}" th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
-                            <button type="submit" class="btn btn-sm btn-secondary">[[#{review.list.delete}]]</button>
+                            <button type="submit" class="btn btn-sm btn-danger">[[#{review.list.delete}]]</button>
                         </form>
                     </div>
                 </td>
@@ -42,5 +79,9 @@
         </table>
     </div>
 </div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
